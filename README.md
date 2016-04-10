@@ -5,7 +5,7 @@ BluetoothRC is an Android application for Bluetooth controlled objects based on 
 When connection established and one of the button pressed and moved. Aplication starts sending data.
 Application will send: Uy or Dy and Lx or Rx
 Where: U = Forward, D = Backward, L = Left, R = Right, y = the position of button in y axis in our case is the SPEED
-       and x = the position of button in x axis in our case is the LEFT or RIGHT turn. You can check the application by download the .apk file.
+       and x = the position of button in x axis in our case is the LEFT or RIGHT turn. You can check the application by downloading the .apk file.
        
 # Contact
 In case you want to cantact me please send an email at snktayfoun@gmail.com and i will respond ASAP.
