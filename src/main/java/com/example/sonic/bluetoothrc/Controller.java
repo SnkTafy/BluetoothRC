@@ -240,14 +240,10 @@ public class Controller extends Activity{
         }
 
         public void run(){
-            if(D) Log.e(TAG, "-- ConnectedThread --");
-
             byte[] buffer = new byte[1024]; //buffer store for the stream
             int bytes; // bytes returned by read
             try {
                 while ((bytes = blueInStream.read(buffer)) != -1) {
-
-                    if (D) Log.e(TAG, "ConnectedThread while(true)");
                     blueOutStream.write(bytes);
                 }
             }
