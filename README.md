@@ -8,4 +8,4 @@ Where: U = Forward, D = Backward, L = Left, R = Right, y = the position of butto
        and x = the position of button in x axis in our case is the LEFT or RIGHT turn. You can check the application by downloading the .apk file.
        
 # Contact
-In case you want to cantact me please send an email at snktayfoun@gmail.com and i will respond ASAP.
+In case you want to contact me please send an email at snktayfoun@gmail.com and i will respond ASAP.
