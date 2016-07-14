@@ -28,12 +28,14 @@ public class BluetoothActivity extends Activity {
     private ArrayAdapter mArrayAdapter ;
     private ListView lstView;
     private Typeface customFont;
+    private ProgressDialog connectingDialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bluetooth);
+        setConnectingDialog();
         // Getting the custom text font
         customFont = Typeface.createFromAsset(getAssets(), "fonts/coolvetica.ttf");
         // Set custom font to available devices text
@@ -46,6 +48,12 @@ public class BluetoothActivity extends Activity {
         getListViewAndSetListener();
         checkIfSupportsBluetooth();
         discoverDevices();
+    }
+    
+    // creating a progress dialog
+    private void setConnectingDialog(){
+        connectingDialog = new ProgressDialog(this);
+        connectingDialog.setTitle("Connecting...");
     }
 
     private void createPopUpWindow(){
@@ -64,11 +72,12 @@ public class BluetoothActivity extends Activity {
         lstView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Shows a connecting spinner
+                connectingDialog.show();
                 // Get the clicked item position
                 String itemValue = (String) lstView.getItemAtPosition(position);
                 // Get the clicked items MAC address
                 String MAC = itemValue.substring(itemValue.length() - 17);
-
                 // Creating Intent to start new activity
                 Intent controller = new Intent(getBaseContext(), Controller.class);
                 // Passing the mac address to new activity

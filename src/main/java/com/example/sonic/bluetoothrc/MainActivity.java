@@ -51,6 +51,12 @@ public class MainActivity extends Activity{
         if(!btAdapter.getDefaultAdapter().isEnabled()){ setTextToVisible(); }
         else { setTextToInvisible(); }
     }
+    
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        //btAdapter.getDefaultAdapter().disable();
+    }
 
     public void getBluetoothActivity(View view){
         Intent intent = new Intent(getApplicationContext(), BluetoothActivity.class);
