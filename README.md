@@ -2,9 +2,9 @@
 BluetoothRC is an Android application for Bluetooth controlled objects based on Arduino. BluetoothRC searches for available Bluetooth devices, connects to selected Bluetooth device, pops up a menu to select the accelerometer or the joystick controller and your selected controller starts. Application tested with Bluetooth HC-05 and Arduino nano.
 
 # Communication
-When connected and one of the button pressed and pushed or change becomes in accelerometer values. Aplication starts sending data.
-Application will send: X,Y
-Where: 
+When connected and one of the button pressed and pushed or change becomes in accelerometer values. Aplication starts sending data.<br>
+Application will send: X,Y<br>
+Where: <br>
        X = values of x axis. X accepts positive and negative values. 
        Y = values of y axis. Y also accets positive and negative values.
        The Y value is used to control the speed, also positive values is to go forward and negative is to go backward.
