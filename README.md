@@ -2,7 +2,7 @@
 BluetoothRC is an android application for communicating and controlling arduino compatible boards. BluetoothRC, uses bluetooth shield for the communication between the android and the arduino and it simple sends over the arduino board all the input data necessary for the arduino application.
 
 - Android support<br>
-The minimun android version must be KitKat.
+The minimun android version must be 4.4(KitKat).
 
 - Arduino support<br>
 The application was sucessfully tested in arduino nano, uno and mega.
