@@ -7,7 +7,7 @@ The minimun android version must be 4.4(KitKat).
 - Arduino support<br>
 The application was sucessfully tested in arduino nano, uno and mega.
 
-For more details about the application and how it works please read the manual.pdf file.
+For more details about the application and how it works please read the <b>manual.odt</b> file.
 
 # Contact
 Feel free to contact me for anything you might want, at snktayfoun@gmail.com.
