@@ -71,6 +71,65 @@
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/leftRightTextLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/leftrightlayout"
+            android:layout_above="@+id/leftrightlayout">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/left_text"
+                android:id="@+id/lrLeftText"
+                android:textSize="35sp"
+                android:textColor="#cecece"
+                android:textStyle="bold"
+                android:layout_alignTop="@+id/lrRightText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/right_text"
+                android:id="@+id/lrRightText"
+                android:textColor="#cecece"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:layout_alignParentTop="true"
+                android:layout_alignLeft="@+id/lrLeftText" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/forwardBackwardTextLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/leftRightTextLayout"
+            android:layout_toRightOf="@+id/udlayout">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/backward_text"
+                android:id="@+id/udBackwardText"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:textColor="#cecece"
+                android:layout_alignTop="@+id/udForwardText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forward_text"
+                android:id="@+id/udForwardText"
+                android:textColor="#cecece"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:layout_alignLeft="@+id/udBackwardText"
+                android:layout_alignStart="@+id/udBackwardText" />
+
+        </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -82,64 +141,14 @@
             android:textColor="#96ffffff"
             android:textStyle="italic"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/left_text"
-            android:id="@+id/lrLeftText"
-            android:textSize="35sp"
-            android:textColor="#cecece"
-            android:textStyle="bold"
-            android:layout_alignTop="@+id/lrRightText"
-            android:layout_alignLeft="@+id/leftrightlayout"
-            android:layout_alignStart="@+id/leftrightlayout" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/backward_text"
-            android:id="@+id/udBackwardText"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:textColor="#cecece"
-            android:layout_alignTop="@+id/udForwardText"
-            android:layout_toRightOf="@+id/udlayout"
-            android:layout_toEndOf="@+id/udlayout" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/forward_text"
-            android:id="@+id/udForwardText"
-            android:textColor="#cecece"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:layout_alignTop="@+id/lrLeftText"
-            android:layout_alignLeft="@+id/udBackwardText"
-            android:layout_alignStart="@+id/udBackwardText" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/right_text"
-            android:id="@+id/lrRightText"
-            android:textColor="#cecece"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:layout_alignParentTop="true"
-            android:layout_alignLeft="@+id/lrLeftText"
-            android:layout_alignStart="@+id/lrLeftText"
-            android:layout_marginTop="25sp" />
-
         <Button
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:id="@+id/beforeBrakeButton"
             android:background="@drawable/warning_light_white"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20sp"
-            android:layout_marginTop="10sp"
+            android:layout_above="@id/leftrightlayout"
             android:onClick="beforeBrakeButtonPressed" />
 
         <Button
@@ -147,10 +156,9 @@
             android:layout_height="50sp"
             android:id="@+id/afterBrakeButton"
             android:background="@drawable/warning_light_red"
-            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20sp"
-            android:layout_marginTop="10sp"
+            android:layout_above="@id/leftrightlayout"
             android:visibility="invisible"
             android:onClick="afterBrakeButtonPressed" />
     </RelativeLayout>
@@ -201,7 +209,18 @@
                 android:id="@+id/connectToText"
                 android:textColor="#cecece"
                 android:textAlignment="center"
+                android:layout_centerInParent="true"
                 android:layout_marginTop="5sp" />
+
+            <TextView
+                android:id="@+id/tabletOrSmartphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:textAlignment="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="5sp"
+                android:layout_marginRight="15sp"/>
         </RelativeLayout>
 
     </RelativeLayout>

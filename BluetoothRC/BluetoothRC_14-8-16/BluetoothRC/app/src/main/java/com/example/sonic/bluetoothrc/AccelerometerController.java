@@ -23,7 +23,7 @@ public class AccelerometerController extends Activity implements SensorEventList
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private int xCurrentPos=0, yCurrentPos=0;
-    private TextView accelerometerText, plusX, minusX, plusY, minusY, connectedToText;
+    private TextView accelerometerText, plusX, minusX, plusY, minusY, connectedToText, taborsmart;
     private Typeface customFont;
     private ConnectingTo connectingTo;
     private CustomToastFont myCustomToast = new CustomToastFont();
@@ -31,6 +31,7 @@ public class AccelerometerController extends Activity implements SensorEventList
     private Button backButtonBeforeClick, backButtonAfterClick;
     private Button beforeBrakePressed, afterBrakePressed;
     private int brakeFlag=0;
+    private boolean tabletOrSmartphone;
 
     @Override
     protected void onCreate(Bundle savedInstance){
@@ -43,6 +44,14 @@ public class AccelerometerController extends Activity implements SensorEventList
         setCustomFont();
         checkConnection();
         connectedToText.setText("Connected to:\n" + deviceName);
+
+        // If the running device is tablet tabletOrSmartphone will be true
+        tabletOrSmartphone = getResources().getBoolean(R.bool.isTablet);
+        if(tabletOrSmartphone == true){
+            taborsmart.setText("Running on: \n Tablet");
+        }else{
+            taborsmart.setText("Running on: \n Smartphone");
+        }
 
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         if(sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null){
@@ -87,6 +96,7 @@ public class AccelerometerController extends Activity implements SensorEventList
         backButtonAfterClick = (Button)findViewById(R.id.accelerometerBackButtonAfterClick);
         beforeBrakePressed = (Button)findViewById(R.id.handBrakeBeforePressed);
         afterBrakePressed = (Button)findViewById(R.id.handBrakeAfterPressed);
+        taborsmart = (TextView)findViewById(R.id.tabletOrSmartphone);
         //get the custom font
         customFont = Typeface.createFromAsset(getAssets(), "fonts/coolvetica.ttf");
     }
@@ -98,12 +108,13 @@ public class AccelerometerController extends Activity implements SensorEventList
         minusY.setTypeface(customFont);
         accelerometerText.setTypeface(customFont);
         connectedToText.setTypeface(customFont);
+        taborsmart.setTypeface(customFont);
     }
 
     public void sendZeroCoordinates(){
         xCurrentPos = 0;
         yCurrentPos = 0;
-        connectingTo.getConnectedTo().write(xCurrentPos + "," + yCurrentPos +"\n");
+        connectingTo.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos +">");
     }
 
     public void setCoordinateTextsToZero(){
@@ -180,9 +191,17 @@ public class AccelerometerController extends Activity implements SensorEventList
     public void onSensorChanged(SensorEvent event) {
 
         displayCurrentValues();
-        // putting the 0 - to reverse the plus and minus in axis Y
-        yCurrentPos = (int)(0 -  (event.values[0]*40));
-        xCurrentPos =  (int)(event.values[1]*40);
+        if(tabletOrSmartphone == false) {
+            // putting the 0 - to reverse the plus and minus in axis Y
+            yCurrentPos = (int) (0 - (event.values[0] * 40));
+            xCurrentPos = (int) (event.values[1] * 40);
+            System.out.println("Running on smart phone");
+        }
+        else{
+            xCurrentPos = (int) (0 - (event.values[0] * 40));
+            yCurrentPos = (int) (event.values[1] * 40);
+            System.out.println("Running on smart tablet");
+        }
     }
 
     @Override
@@ -193,24 +212,24 @@ public class AccelerometerController extends Activity implements SensorEventList
         if(brakeFlag != 1) {
             if (xCurrentPos > 0) {
                 plusX.setText(Integer.toString(xCurrentPos));
-                connectingTo.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                connectingTo.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                 minusX.setText("0");
             }
             if (xCurrentPos < 0) {
                 minusX.setText(Integer.toString(xCurrentPos));
                 //xCurrentPos = Math.abs(xCurrentPos);
-                connectingTo.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                connectingTo.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                 plusX.setText("0");
             }
             if (yCurrentPos > 0) {
                 plusY.setText(Integer.toString(yCurrentPos));
-                connectingTo.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                connectingTo.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                 minusY.setText("0");
             }
             if (yCurrentPos < 0) {
                 minusY.setText(Integer.toString(yCurrentPos));
                 //yCurrentPos = Math.abs(yCurrentPos);
-                connectingTo.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                connectingTo.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                 plusY.setText("0");
             }
         }

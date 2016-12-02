@@ -71,7 +71,7 @@ public class Controller extends Activity{
     private void setSpeedToZero(){
         xCurrentPos = 0;
         yCurrentPos = 0;
-        t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+        t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
     }
 
     @Override
@@ -186,12 +186,13 @@ public class Controller extends Activity{
                         // This part of code will be executed only once when the finger is removed from the button
                         // Set the button to the start position
                         lrParms.leftMargin = xStartPos;
+                        xCurrentPos = 0;
                         lrImage.setLayoutParams(lrParms);
                         // When remove the button from the button set all the texts to invisible
                         leftText.setVisibility(View.INVISIBLE);
                         rightText.setVisibility(View.INVISIBLE);
                         // Set L to 0
-                        t.getConnectedTo().write("0," + yCurrentPos + "\n");
+                        t.getConnectedTo().write("<" + "0," + yCurrentPos + ">");
                         break;
                     case MotionEvent.ACTION_MOVE:
                         // This part of code will be executed while the button is touched
@@ -208,24 +209,24 @@ public class Controller extends Activity{
                                 lrParms.leftMargin = (xStartPos - ((lrImageBackground.getWidth()/ 2) - (lrImage.getWidth()/2)));
                                 // Sending to bluetooth the final poslition
                                 xCurrentPos = 0 - xCurrentPos;
-                                t.getConnectedTo().write( xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write( "<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
                             // If the button pushed right
                             else{
                                 // This is the final right position
                                 lrParms.leftMargin = (xStartPos + ((lrImageBackground.getWidth()/ 2) - (lrImage.getWidth()/2)));
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
                         }else{
                             // Sending to bluetooth the current position
                             xCurrentPos = 0 - (int)(xStartPos - (event.getRawX() - dx));
                             if((event.getRawX() - dx) < xStartPos){
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }else if((event.getRawX() - dx) == xStartPos){
                                 xCurrentPos = 0;
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }else{
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
 
                             // Getting new putton position
@@ -282,23 +283,23 @@ public class Controller extends Activity{
                             yCurrentPos = (udImageBackgound.getHeight() / 2) - (udImage.getHeight() / 2);
                             if((event.getRawY() - dy) < yStartPos){
                                 udParms.topMargin = (yStartPos - ((udImageBackgound.getHeight()/ 2) - (udImage.getHeight()/2)));
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
                             else{
                                 udParms.topMargin = (yStartPos + ((udImageBackgound.getHeight()/ 2) - (udImage.getHeight()/2)));
                                 yCurrentPos = -yCurrentPos;
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
                         }else{
                             yCurrentPos = (int)(yStartPos - (event.getRawY() - dy));
                             if(event.getRawY() - dy < yStartPos){
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }else if(event.getRawY() - dy == yStartPos){
                                 yCurrentPos = 0;
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }else{
                                 xCurrentPos = -xCurrentPos;
-                                t.getConnectedTo().write(xCurrentPos + "," + yCurrentPos + "\n");
+                                t.getConnectedTo().write("<" + xCurrentPos + "," + yCurrentPos + ">");
                             }
 
                             udParms.topMargin = (int)(event.getRawY() - dy);
